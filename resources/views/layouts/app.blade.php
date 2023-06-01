@@ -72,6 +72,31 @@
                     <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span
                                 class="icon-shopping_cart"></span>[0]</a></li>
 
+                    <!-- Authentication buttons in menu -->
+
+                    @guest
+
+                    <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Log in</a></li>
+
+                    @endguest
+
+                    @auth
+
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+    
+                            <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log out') }}
+                            </a>
+                        </form>
+                    </li>
+                    
+                    @endauth
+                    
                 </ul>
             </div>
         </div>
