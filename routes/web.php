@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
+Route::get('/products/{product}', [ProductController::class, 'show']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

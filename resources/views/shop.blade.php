@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
                                 <div class="product">
-                                    <a href="#" class="img-prod"><img class="img-fluid"
+                                    <a href="/products/{{$products->first()->id; }}" class="img-prod"><img class="img-fluid"
                                             src="assets/images/{{ $products->first()->cover; }}" alt="Colorlib Template">
                                         <span class="status">30%</span>
                                         <div class="overlay"></div>
@@ -59,7 +59,7 @@
                                 
                                 <div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
                                     <div class="product">
-                                        <a href="#" class="img-prod"><img class="img-fluid"
+                                        <a href="/products/{{$product->id; }}" class="img-prod"><img class="img-fluid"
                                                 src="assets/images/{{ $product->cover; }}" alt="Colorlib Template">
                                             <div class="overlay"></div>
                                         </a>
