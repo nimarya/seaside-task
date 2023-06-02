@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,22 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/shop', [ProductController::class, 'index']);
+Route::get('/shop', function () {
+
+    $products = Product::all();
+
+    if (request('category')) {
+        $products = $products->where('category_id', request('category'));
+        //ddd(request('category'), $products);
+    }
+
+    return view('shop', [
+        'products' => $products,
+        'categories' => Category::all(),
+    ]);
+});
+
+// Route::get('/shop', [ProductController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

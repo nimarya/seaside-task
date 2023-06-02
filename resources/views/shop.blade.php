@@ -23,16 +23,16 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
                             <div class="product">
                                 <a href="#" class="img-prod"><img class="img-fluid"
-                                        src="assets/images/{{ $products[0]->cover; }}" alt="Colorlib Template">
+                                        src="assets/images/{{ $products->first()->cover; }}" alt="Colorlib Template">
                                     <span class="status">30%</span>
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 px-3">
-                                    <h3><a href="#">{{ $products[0]->name; }}</a></h3>
+                                    <h3><a href="#">{{ $products->first()->name; }}</a></h3>
                                     <div class="d-flex">
                                         <div class="pricing">
-                                            <p class="price"><span class="mr-2 price-dc">${{ $products[0]->cost; }}</span><span
-                                                    class="price-sale">${{ $products[0]->cost*0.7; }}</span></p>
+                                            <p class="price"><span class="mr-2 price-dc">${{ $products->first()->cost; }}</span><span
+                                                    class="price-sale">${{ $products->first()->cost*0.7; }}</span></p>
                                         </div>
                                         <div class="rating">
                                             <p class="text-right">
@@ -112,7 +112,7 @@
                         <h2 class="heading mb-4"><a href="#">Clothing</a></h2>
                         <ul>
                             @foreach ($categories as $category)
-                                <li><a href="#">{{ $category->name; }}</a></li>
+                                <li><a href="/shop?category={{ $category->id; }}">{{ $category->name; }}</a></li>
                             @endforeach
                         </ul>
                     </div>
