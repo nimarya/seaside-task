@@ -19,53 +19,21 @@
 
                     {{-- Section with dinamic view of products in the shop --}}
 
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
-                            <div class="product">
-                                <a href="#" class="img-prod"><img class="img-fluid"
-                                        src="assets/images/{{ $products->first()->cover; }}" alt="Colorlib Template">
-                                    <span class="status">30%</span>
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 px-3">
-                                    <h3><a href="#">{{ $products->first()->name; }}</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price"><span class="mr-2 price-dc">${{ $products->first()->cost; }}</span><span
-                                                    class="price-sale">${{ $products->first()->cost*0.7; }}</span></p>
-                                        </div>
-                                        <div class="rating">
-                                            <p class="text-right">
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="bottom-area d-flex px-3">
-                                        <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
-                                                    class="ion-ios-add ml-1"></i></span></a>
-                                        <a href="#" class="buy-now text-center py-2">Buy now<span><i
-                                                    class="ion-ios-cart ml-1"></i></span></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        @foreach ($products->skip(1) as $product)
-                            
+                    @if ($products->isNotEmpty())
+                        <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
                                 <div class="product">
                                     <a href="#" class="img-prod"><img class="img-fluid"
-                                            src="assets/images/{{ $product->cover; }}" alt="Colorlib Template">
+                                            src="assets/images/{{ $products->first()->cover; }}" alt="Colorlib Template">
+                                        <span class="status">30%</span>
                                         <div class="overlay"></div>
                                     </a>
                                     <div class="text py-3 px-3">
-                                        <h3><a href="#">{{ $product->name; }}</a></h3>
+                                        <h3><a href="#">{{ $products->first()->name; }}</a></h3>
                                         <div class="d-flex">
                                             <div class="pricing">
-                                                <p class="price"><span>${{ $product->cost; }}</span></p>
+                                                <p class="price"><span class="mr-2 price-dc">${{ $products->first()->cost; }}</span><span
+                                                        class="price-sale">${{ $products->first()->cost*0.7; }}</span></p>
                                             </div>
                                             <div class="rating">
                                                 <p class="text-right">
@@ -87,9 +55,45 @@
                                 </div>
                             </div>
 
-                        @endforeach
+                            @foreach ($products->skip(1) as $product)
+                                
+                                <div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
+                                    <div class="product">
+                                        <a href="#" class="img-prod"><img class="img-fluid"
+                                                src="assets/images/{{ $product->cover; }}" alt="Colorlib Template">
+                                            <div class="overlay"></div>
+                                        </a>
+                                        <div class="text py-3 px-3">
+                                            <h3><a href="#">{{ $product->name; }}</a></h3>
+                                            <div class="d-flex">
+                                                <div class="pricing">
+                                                    <p class="price"><span>${{ $product->cost; }}</span></p>
+                                                </div>
+                                                <div class="rating">
+                                                    <p class="text-right">
+                                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p class="bottom-area d-flex px-3">
+                                                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                                                            class="ion-ios-add ml-1"></i></span></a>
+                                                <a href="#" class="buy-now text-center py-2">Buy now<span><i
+                                                            class="ion-ios-cart ml-1"></i></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            @endforeach
+
+                        </div>
+                    @endif
                         
-                    </div>
                     <div class="row mt-5">
                         <div class="col text-center">
                             <div class="block-27">
@@ -109,10 +113,10 @@
 
                 <div class="col-md-4 col-lg-2 sidebar">
                     <div class="sidebar-box-2">
-                        <h2 class="heading mb-4"><a href="#">Clothing</a></h2>
+                        <h2 class="heading mb-4"><a href="{{ route('shop'); }}">Clothing</a></h2>
                         <ul>
                             @foreach ($categories as $category)
-                                <li><a href="/shop?category={{ $category->id; }}">{{ $category->name; }}</a></li>
+                                <li><a href="/shop?category_id={{ $category->id; }}">{{ $category->name; }}</a></li>
                             @endforeach
                         </ul>
                     </div>
