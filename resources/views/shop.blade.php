@@ -29,7 +29,7 @@
                                         <div class="overlay"></div>
                                     </a>
                                     <div class="text py-3 px-3">
-                                        <h3><a href="#">{{ $products->first()->name; }}</a></h3>
+                                        <h3><a href="/products/{{ $products->first()->id; }}">{{ $products->first()->name; }}</a></h3>
                                         <div class="d-flex">
                                             <div class="pricing">
                                                 <p class="price"><span class="mr-2 price-dc">${{ $products->first()->cost; }}</span><span
@@ -64,7 +64,7 @@
                                             <div class="overlay"></div>
                                         </a>
                                         <div class="text py-3 px-3">
-                                            <h3><a href="#">{{ $product->name; }}</a></h3>
+                                            <h3><a href="/products/{{ $product->id; }}">{{ $product->name; }}</a></h3>
                                             <div class="d-flex">
                                                 <div class="pricing">
                                                     <p class="price"><span>${{ $product->cost; }}</span></p>

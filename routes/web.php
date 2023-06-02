@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        'products' => Product::all(),
+    ]);
 });
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
