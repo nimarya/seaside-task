@@ -14,4 +14,11 @@ class ProductController extends Controller
             'product' => Product::find($id),
         ]);
     }
+
+    public function create()
+    {
+        return view('create', [
+            'products' => Product::all(),
+        ]);
+    }
 }

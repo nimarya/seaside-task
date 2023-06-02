@@ -27,6 +27,8 @@ Route::get('/', function () {
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
 Route::get('/products/{product}', [ProductController::class, 'show']);
+Route::get('/admin/products/create', [ProductController::class, 'create'])->middleware('admin');
+Route::post('/admin/products/store', [ProductController::class, 'store'])->middleware('admin')->name('products.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
