@@ -62,6 +62,9 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
+                    @if (auth()->user()?->name == 'admin')
+                        <li class="nav-item active"><a href="/admin/products/create" class="nav-link">Add product</a></li>
+                    @endif
                     <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="/shop">Shop</a>
