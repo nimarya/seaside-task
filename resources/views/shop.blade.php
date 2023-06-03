@@ -45,12 +45,16 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <p class="bottom-area d-flex px-3">
-                                            <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
-                                                        class="ion-ios-add ml-1"></i></span></a>
-                                            <a href="#" class="buy-now text-center py-2">Buy now<span><i
-                                                        class="ion-ios-cart ml-1"></i></span></a>
-                                        </p>
+
+                                        {{-- Adding items to cart only to athenticated users --}}
+                                        @auth
+                                            <p class="bottom-area d-flex px-3">
+                                                <a href="/cart/store/{{ $products->first()->id; }}" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                                                            class="ion-ios-add ml-1"></i></span></a>
+                                                <a href="#" class="buy-now text-center py-2">Buy now<span><i
+                                                            class="ion-ios-cart ml-1"></i></span></a>
+                                            </p>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>
@@ -79,12 +83,15 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <p class="bottom-area d-flex px-3">
-                                                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
-                                                            class="ion-ios-add ml-1"></i></span></a>
-                                                <a href="#" class="buy-now text-center py-2">Buy now<span><i
-                                                            class="ion-ios-cart ml-1"></i></span></a>
-                                            </p>
+                                            {{-- Adding items to cart only to athenticated users --}}
+                                            @auth
+                                                <p class="bottom-area d-flex px-3">
+                                                    <a href="/cart/store/{{ $product->id; }}" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                                                                class="ion-ios-add ml-1"></i></span></a>
+                                                    <a href="#" class="buy-now text-center py-2">Buy now<span><i
+                                                                class="ion-ios-cart ml-1"></i></span></a>
+                                                </p>
+                                            @endauth
                                         </div>
                                     </div>
                                 </div>
@@ -113,41 +120,13 @@
 
                 <div class="col-md-4 col-lg-2 sidebar">
                     <div class="sidebar-box-2">
+                        {{-- Dinamic view of existing categories --}}
+
                         <h2 class="heading mb-4"><a href="{{ route('shop'); }}">Clothing</a></h2>
                         <ul>
                             @foreach ($categories as $category)
                                 <li><a href="/shop?category_id={{ $category->id; }}">{{ $category->name; }}</a></li>
                             @endforeach
-                        </ul>
-                    </div>
-                    <div class="sidebar-box-2">
-                        <h2 class="heading mb-4"><a href="#">Jeans</a></h2>
-                        <ul>
-                            <li><a href="#">Shirts &amp; Tops</a></li>
-                            <li><a href="#">Dresses</a></li>
-                            <li><a href="#">Shorts &amp; Skirts</a></li>
-                            <li><a href="#">Jackets</a></li>
-                            <li><a href="#">Coats</a></li>
-                            <li><a href="#">Jeans</a></li>
-                            <li><a href="#">Sleeveless</a></li>
-                            <li><a href="#">Trousers</a></li>
-                            <li><a href="#">Winter Coats</a></li>
-                            <li><a href="#">Jumpsuits</a></li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-box-2">
-                        <h2 class="heading mb-2"><a href="#">Bags</a></h2>
-                        <h2 class="heading mb-2"><a href="#">Accessories</a></h2>
-                    </div>
-                    <div class="sidebar-box-2">
-                        <h2 class="heading mb-4"><a href="#">Shoes</a></h2>
-                        <ul>
-                            <li><a href="#">Nike</a></li>
-                            <li><a href="#">Addidas</a></li>
-                            <li><a href="#">Skechers</a></li>
-                            <li><a href="#">Jackets</a></li>
-                            <li><a href="#">Coats</a></li>
-                            <li><a href="#">Jeans</a></li>
                         </ul>
                     </div>
                 </div>
