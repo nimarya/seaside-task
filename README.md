@@ -2,4 +2,5 @@
 
 To start this project type `docker-compose up` in command line in the root of this project
 Then run migrations: `php artisan migrate:fresh`
+
     or use the export file of the database
