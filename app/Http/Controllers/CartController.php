@@ -18,14 +18,31 @@ class CartController extends Controller
         ]);
     }
 
-    public function store(int $id)
+    public function addProductInCart(int $id)
     {
         $user = Auth::user();
-        $products = json_decode($user->products);
+        $products = json_decode($user->products, JSON_OBJECT_AS_ARRAY);
 
         // check if there is already this product in the user's cart
         if (!in_array($id, $products)) {
             $products[] = $id;
+            $user->products = json_encode($products);
+            $user->update();
+        }
+
+        return redirect('cart');
+    }
+
+    public function removeProductFromCart(int $id)
+    {
+        $user = Auth::user();
+        $products = json_decode($user->products, JSON_OBJECT_AS_ARRAY);
+
+        $key = array_search($id, $products);
+
+        // check if there is this item in cart
+        if ($key !== false) {
+            unset($products[$key]);
             $user->products = json_encode($products);
             $user->update();
         }

@@ -33,7 +33,7 @@
 
                                 @foreach ($products as $product)
                                     <tr class="text-center">
-                                        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a>
+                                        <td class="product-remove"><a href="/cart/remove/{{ $product->id; }}"><span class="ion-ios-close"></span></a>
                                         </td>
 
                                         <td class="image-prod">
