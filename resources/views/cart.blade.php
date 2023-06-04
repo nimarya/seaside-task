@@ -29,55 +29,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-center">
-                                    <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a>
-                                    </td>
+                                {{-- Dinamic view of products in cart --}}
 
-                                    <td class="image-prod">
-                                        <div class="img" style="background-image:url({{ asset('assets/images/product-3.jpg') }});"></div>
-                                    </td>
+                                @foreach ($products as $product)
+                                    <tr class="text-center">
+                                        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a>
+                                        </td>
 
-                                    <td class="product-name">
-                                        <h3>Young Woman Wearing Dress</h3>
-                                        <p>Far far away, behind the word mountains, far from the countries</p>
-                                    </td>
+                                        <td class="image-prod">
+                                            <div class="img" style="background-image:url('assets/images/{{ $product->cover; }}');"></div>
+                                        </td>
 
-                                    <td class="price">$4.90</td>
+                                        <td class="product-name">
+                                            <h3>{{ $product->name; }}</h3>
+                                            <p>{{ $product->description; }}</p>
+                                        </td>
 
-                                    <td class="quantity">
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="quantity" class="quantity form-control input-number"
-                                                value="1" min="1" max="100">
-                                        </div>
-                                    </td>
+                                        <td class="price">${{ $product->cost; }}</td>
 
-                                    <td class="total">$4.90</td>
-                                </tr><!-- END TR-->
+                                        <td class="quantity">
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="quantity" class="quantity form-control input-number"
+                                                    value="1" min="1" max="100">
+                                            </div>
+                                        </td>
 
-                                <tr class="text-center">
-                                    <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a>
-                                    </td>
+                                        <td class="total">${{ $product->cost; }}</td>
+                                    </tr><!-- END TR-->
+                                @endforeach
 
-                                    <td class="image-prod">
-                                        <div class="img" style="background-image:url({{ asset('assets/images/product-4.jpg') }});"></div>
-                                    </td>
-
-                                    <td class="product-name">
-                                        <h3>Young Woman Wearing Dress</h3>
-                                        <p>Far far away, behind the word mountains, far from the countries</p>
-                                    </td>
-
-                                    <td class="price">$15.70</td>
-
-                                    <td class="quantity">
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="quantity" class="quantity form-control input-number"
-                                                value="1" min="1" max="100">
-                                        </div>
-                                    </td>
-
-                                    <td class="total">$15.70</td>
-                                </tr><!-- END TR-->
                             </tbody>
                         </table>
                     </div>
@@ -89,7 +69,7 @@
                         <h3>Cart Totals</h3>
                         <p class="d-flex">
                             <span>Subtotal</span>
-                            <span>$20.60</span>
+                            <span>${{ $products->sum('cost'); }}</span>
                         </p>
                         <p class="d-flex">
                             <span>Delivery</span>
@@ -97,12 +77,12 @@
                         </p>
                         <p class="d-flex">
                             <span>Discount</span>
-                            <span>$3.00</span>
+                            <span>${{ $products->sum('cost')*0.2; }}</span>
                         </p>
                         <hr>
                         <p class="d-flex total-price">
                             <span>Total</span>
-                            <span>$17.60</span>
+                            <span>${{ $products->sum('cost')*0.8; }}</span>
                         </p>
                     </div>
                     <p class="text-center"><a href="/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>

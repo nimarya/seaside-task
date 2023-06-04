@@ -10,8 +10,11 @@ class CartController extends Controller
 {
     public function index()
     {
+        $itemsInCart = json_decode(Auth::user()->products);
+
+        // sending to view only user's products in cart
         return view('cart', [
-            'products' => Product::all(),
+            'products' => Product::all()->whereIn('id', $itemsInCart),
         ]);
     }
 
