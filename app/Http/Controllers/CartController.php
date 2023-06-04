@@ -23,6 +23,11 @@ class CartController extends Controller
         $user = Auth::user();
         $products = json_decode($user->products, JSON_OBJECT_AS_ARRAY);
 
+        // default value in json field is not allowed (instead of null)
+        if ($products === null) {
+            $products = [];
+        }
+
         // check if there is already this product in the user's cart
         if (!in_array($id, $products)) {
             $products[] = $id;

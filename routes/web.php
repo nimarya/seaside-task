@@ -31,9 +31,11 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 Route::get('/admin/products/create', [ProductController::class, 'create'])->middleware('admin');
 Route::post('/admin/products/store', [ProductController::class, 'store'])->middleware('admin')->name('products.store');
 
-Route::get('/cart', [CartController::class, 'index']);
-Route::get('/cart/add/{product}', [CartController::class, 'addProductInCart']);
-Route::get('/cart/remove/{product}', [CartController::class, 'removeProductFromCart']);
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::get('/cart/add/{product}', [CartController::class, 'addProductInCart']);
+    Route::get('/cart/remove/{product}', [CartController::class, 'removeProductFromCart']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
